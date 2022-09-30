@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
+use Illuminate\Routing\RouteUri;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
