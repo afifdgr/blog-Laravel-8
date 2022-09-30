@@ -19,5 +19,4 @@
         </div>
     </div>
 </div>
-<article>
-    @endsection
+@endsection

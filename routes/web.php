@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 
 
 /*
@@ -23,14 +23,12 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('home', [
         "tittle" => "Home",
-        'active' => 'home'
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "tittle" => "About",
-        'active' => 'about',
         "name" => "Muhammad Afiv",
         "email" => "Afiv@gmail.com",
         "image" => "foto.png"
@@ -44,7 +42,6 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function () {
     return view('categories', [
         'tittle' => 'Post Categories',
-        'active' => 'categories',
         'categories' => Category::all()
     ]);
 });
@@ -56,4 +53,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
