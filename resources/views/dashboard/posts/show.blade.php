@@ -17,8 +17,13 @@
                 <button class="btn btn-danger btn-sm border-0 m-1" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></span> Delete</button>
             </form>
 
+            @if($post->image)
+            <div style="max-height: 500px; overflow:hidden;">
+                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}" class="img-fluid mt-3">
+            </div>
+            @else
             <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}" class="img-fluid mt-3">
-
+            @endif
             <article class="my-3 fs-6">
                 {!! $post->body !!}
             </article>
